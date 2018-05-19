@@ -37,7 +37,6 @@ tipoSiembra(menta,[directa,almacigo]).
 tipoSiembra(melisa,[almacigo]).
 tipoSiembra(melon,[directa,almacigo]).
 tipoSiembra(mostaza,[directa,almacigo]).
-
 %%Profundidad de siembra en centimetros
 profundidad(acelga,2).
 profundidad(chile,'0.6').
@@ -78,9 +77,7 @@ profundidad(menta,1).
 profundidad(melisa,1).
 profundidad(melon,4).
 profundidad(mostaza,'1.2').
-
 %%distancia en cm(plantas,hileras)
-
 distancia(acelga,20,60).
 distancia(chile,25,45).
 distancia(ajo,8,30).
@@ -121,7 +118,7 @@ distancia(menta,25,25).
 distancia(melisa,30,30).
 distancia(melon,150,200).
 distancia(mostaza,30,40).
-
+%%hortalizas que se pueden plantar junta
 asociar(acelga,[lechuga,coles,coliflor]).
 asociar(chile,[berenjena,coles,albahaca]).
 asociar(ajo,[lechuga,hinojo]).
@@ -162,7 +159,6 @@ asociar(menta,[coles,lechuga]).
 asociar(melisa,[todo]).
 asociar(melon,[lechuga,maiz]).
 asociar(mostaza,[acelga]).
-
 %%germina (hortaliza,dias minimos, dias maximos)
 germina(acelga,7,9).
 germina(chile,15,30).
@@ -204,15 +200,12 @@ germina(menta,8,10).
 germina(melisa,10,12).
 germina(melon,3,7).
 germina(mostaza,3,10).
-
 %%recoleccion desde la siembra(hortaliza,)
-
 recoleccion(acelga,90,90).
 recoleccion(chile,60,90).
 recoleccion(ajo,180,200).
 recoleccion(albahaca,70,90).
 recoleccion(alchachofa,80,100).
-%%recoleccion(anquito,x). No hay informacion
 recoleccion(apio,150,150).
 recoleccion(arveja,80,100).
 recoleccion(batatas,210,250).
@@ -231,7 +224,6 @@ recoleccion(cilantro,90,90).
 recoleccion(coliflor,90,90).
 recoleccion(eneldo,90,90).
 recoleccion(escarola,90,90).
-%%recoleccion(esparrago,). 3 años
 recoleccion(espinaca,60,90).
 recoleccion(estragon,90,90).
 recoleccion(fresas,100,120).
@@ -247,3 +239,44 @@ recoleccion(menta,90,90).
 recoleccion(melisa,90,110).
 recoleccion(melon,100,120).
 recoleccion(mostaza,100,120).
+
+mes(acelga,[1,2,3,4,5,6,7,8,9,10,11,12]).
+mes(chile,[8,9]).
+mes(ajo,[]).
+mes(albahaca,).
+mes(alchachofa,).
+mes(anquito,).
+mes(api,).
+mes(arveja,).
+mes(batatas,).
+mes(berenjena,).
+mes(berro,).
+mes(brocoli,).
+mes(calabacin,).
+mes(calabaza,).
+mes(canonigo,).
+mes(cardos,).
+mes(cebollaTemprana,).
+mes(cebollaTardia,).
+mes(cebollin,).
+mes(ciboulette,).
+mes(cilantro,).
+mes(coliflor,).
+mes(eneldo,).
+mes(escarola,).
+mes(esparrago,).
+mes(espinaca,).
+mes(estragon,).
+mes(fresas,).
+mes(garbanzos,).
+mes(haba,).
+mes(hinojo,).
+mes(lavanda,).
+mes(lechuga,).
+mes(maiz,).
+mes(manzanilla,).
+mes(mejorana,).
+mes(menta,).
+mes(melisa,).
+mes(melon,).
+mes(mostaza,).
