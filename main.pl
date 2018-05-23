@@ -1,21 +1,25 @@
 :-use_module(library(pce)).
-:-consult(conocimiento).
 :-pce_image_directory('./img').
+:-consult('./AgroSistemaExperto/motorInferencia.pl').
 resource(logo,image,image('logo.jpg')).
 
-%% tp(N1,R):-tipoSiembra(N1,L),send(R,selection,L).
 mes:-write('Push it').
 
 plantar:-new(Dp,dialog('Vamos a plantar!')),
 new(TxtExt,text_item('Hortaliza')),
 new(TxtPrueba,text_item('Prueba')),
-new(BtnHor,button('Buscar',message(@prolog,mes))),
-%% N1 is TxtExt,
-%% tp(N1,R),
-%% write(R),
-send_list(Dp,append,[TxtExt,TxtPrueba,BtnHor]),
+new(MenuMes,menu('Que chingaos quieres?',cycle)),
+send_list(MenuMes,append,['Enero','Febrero','Plastico']),
+new(BtnHor,button('Buscar',message(@prolog,miProfundidad,TxtExt?selection,TxtPrueba))),
+
+send_list(Dp,append,[TxtExt,TxtPrueba,MenuMes,BtnHor]),
 
 send(Dp,open).
+
+infoPlantado:-new(Di,dialog('Hortaliza')),
+%% new(LblHort)
+send_list(Di,append,[]),
+send(Di,open).
 
 plantado:-new(Dpl,dialog('Titulo')),
 %% send(B,append,[chile,acelga]),
@@ -29,6 +33,6 @@ new(BtnA,button('Quieres plantar?',message(@prolog,plantar))),
 new(BtnB,button('Ya tengo plantado!',message(@prolog,plantado))),
 
 send_list(D,append,[LblIcon,BtnA,BtnB]),
-send(BtnB,below,BtnA),
+%% send(BtnB,below,BtnA),
 send(D,open).
 

@@ -1,17 +1,15 @@
-tp(H,R):-tipoSiembra(H,L),write(L),send(R,selection,L).
+:-consult('./AgroSistemaExperto/conocimiento.pl').
 
-prof(H,R):-profundidad(H,L),send(R,selection,L).
+miTipoSiembra(H,R):-tipoSiembra(H,L),write(L),send(R,selection,L).
 
-dist(H,Planta,Hilera):-distancia(H,P,Hl),
+miProfundidad(H,R):-profundidad(H,L),send(R,selection,L).
+
+miDistancia(H,Planta,Hilera):-distancia(H,P,Hl),
 send(Planta,selection,P),send(Hilera,selection,Hl).
-vent:-consult('./AgroSistemaExperto/conocimiento.pl'),
-new(D,dialog('Prueba')),
-new(TxtA,text_item('Hortaliza')),
-new(TxtB,text_item('Planta')),
-new(TxtC,text_item('Hilera')),
+%%Queda pendiente asociar
+miGermina(H,Dmin,Dmax):-germina(H,Min,Max),
+send(Dmin,selection,Min),send(Dmax,selection,Max).
 
-new(BtnA,button('Pushale',message(@prolog,dist,TxtA?selection,TxtB,TxtC))),
-
-send_list(D,append,[TxtA,TxtB,TxtC,BtnA]),
-
-send(D,open).
+miRecoleccion(H,Dmin,Dmax):-recoleccion(H,Min,Max),
+send(Dmin,selection,Min),send(Dmax,selection,Max).
+%%Que da pendiente mes
