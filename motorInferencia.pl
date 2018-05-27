@@ -1,4 +1,4 @@
-:-consult('./AgroSistemaExperto/conocimiento.pl').
+:-consult('./conocimiento.pl').
 const(X,L,[X|L]).
 const(X,[],[X]).
 conc([],L,L).
@@ -24,28 +24,24 @@ miDistancia(H,Du,Dd),miRecoleccion(H,Ru,Rd).
 miPlantado(H,Calc,X,_,Y,_):-germina(H,Gu,Gd),recoleccion(H,Ru,Rd),
 Calc>Gu,Calc<Gd,
 write(Calc),nl,write(Gu),nl,write(Gd),
-send(X,selection,'Esta en fechas de germinar'),send(Y,selection,'Todavía no es fecha de cosecha').
-%% X = 'Esta en fechas de germinar',Y = 'Todavía no es fecha de cosecha'.
+%% send(X,selection,'Esta en fechas de germinar'),send(Y,selection,'Todavía no es fecha de cosecha').
+X = 'Esta en fechas de germinar',Y = 'Todavía no es fecha de cosecha'.
 listona(Mes,[L]):-mes(H,MesLista),member(Mes,MesLista),
 const(H,L,L).
 
-%% miLista(Mes,ListaAux,Lista):-mes(H,MesLista),
-%% member(Mes,MesLista),
-%% cons(H,ListaAux,Lista).
-%% obtenerHortaliza(Mes,H):-mes(H,MesLista),
-%% member(Mes,MesLista).
-%% lista(Mes,Lista):-obtenerHortaliza(Mes,H),
-%% cons(H,[H],Lista).
-
-%% conc([H],ListaAux,Lista),miLista(Mes,ListaAux,Lista).
+test(A,B):-write(A),write(B).
 
 prueba:-new(D,dialog('titulo')),
 new(MenuHor,menu('mes:',cycle)),
 send_list(MenuHor,append,['acelga','chile']),
-new(LblProfundidad,label(nombre,'Hoal')),
-new(TxtGerminaUno,text_item('Germina')),
-new(TxtGerminaDos,text_item('Germian')),
-new(BtnA,button('Pushale',message(@prolog,miProfundidad,MenuHor?selection,LblProfundidad))),
+new(TxtA,text_item('Germina')),
+new(TxtB,text_item('Germian')),
+new(TxtC,text_item('Germian')),
+new(TxtD,text_item('Germian')),
+new(TxtE,text_item('Germian')),
+%% new(BtnA,button('Pushale',message(@prolog,miPlantado,MenuHor?selection,TxtA?selection,
+new(BtnA,button('Picale',message(@prolog,test,MenuHor'selection,TxtA?selection))),
+	TxtB,TxtC,TxtD,TxtE))),
 
-send_list(D,append,[MenuHor,LblProfundidad,TxtGerminaUno,TxtGerminaDos,BtnA]),
+send_list(D,append,[MenuHor,TxtA,TxtB,TxtC,TxtD,TxtE,BtnA]),
 send(D,open).
