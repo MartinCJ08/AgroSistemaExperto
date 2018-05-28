@@ -7,6 +7,7 @@ resource(siembra,image,image('siembra.jpg')).
 resource(huerto,image,image('huerto.jpg')).
 resource(horizontal,image,image('horizontal.jpg')).
 resource(vertical,image,image('vertical.jpg')).
+resource(germina,image,image('germina.jpeg')).
 
 obtenerPlantar(Hemisferio,Mes):-L = [Hemisferio,Mes],write(L).
 
@@ -24,7 +25,7 @@ new(BtnHor,button('Buscar',message(@prolog,infoPlantar,MenuMes?selection))),
 
 send_list(Dp,append,[MenuMes,Op,BtnHor]),
 
-send(Dp,open).
+send(Dp,open_centered).
 
 
 infoPlantar(Mes):-
@@ -54,19 +55,22 @@ send(Dinfo,open_centered).
 
 plantado:-new(Dpl,dialog('Titulo')),
 new(MenuHor,menu('Hortaliza',cycle)),
-send_list(MenuHor,append,['chile','acelga']),
+send_list(MenuHor,append,[acelga,chile,ajo,albahaca,alchachofa,anquito,
+api,arveja,batatas,berenjena,berro,brocoli,calabacin,calabaza,canonigo,
+cardos,cebollaTemprana,cebollaTardia,cebollin,ciboulette,cilantro,
+coliflor,eneldo,escarola,esparrago,espinaca,estragon,fresas,garbanzos,
+haba,hinojo,lavanda,lechuga,maiz,manzanilla,mejorana,menta,
+melisa,melon,mostaza]),
 new(TxtIni,text_item('Inicio aprox. de plantacion')),
-new(TxtGerminaUno,text_item('Inicio Germina(Dias)')),
-new(TxtGerminaDos,text_item('Fin Germina(Dias)')),
-new(TxtRecoleccionUno,text_item('Inicio Recoleccion(dias)')),
-new(TxtRecoleccionDos,text_item('Fin Recoleccion(dias)')),
+new(LblGermina,label(germina,'Informacion releante con tiempos de germinacion y cosecha')),
+new(LblRecoleccion,label(recoleccion,'')),
 new(BtnCalc,button('Calcular',message(@prolog,miPlantado,MenuHor?selection,
-	TxtIni?selection,TxtGerminaUno,TxtGerminaDos,TxtRecoleccionUno,TxtRecoleccionDos))),
-send_list(Dpl,append,[MenuHor,TxtIni,TxtGerminaUno,
-	TxtGerminaDos,TxtRecoleccionUno,TxtRecoleccionDos,
-	BtnCalc]),
+	TxtIni?selection,LblGermina,LblRecoleccion))),
+new(LblImg,label(germina,resource(germina))),
+send_list(Dpl,append,[MenuHor,TxtIni,LblGermina,LblRecoleccion,
+	BtnCalc,LblImg]),
 
-send(Dpl,open).
+send(Dpl,open_centered).
 
 huerto:-new(D,dialog('Informacion de Huertas Caseras')),
 
@@ -83,9 +87,13 @@ send_list(D,append,[LblInfo,LblGen,BtnVertical,BtnHorizontal,LblHuerto]),
 send(D,open_centered).
 
 vertical:-new(D,dialog('Huertas Caseras Verticales')),
+new(LblInfo,label(info,'Un huerto vertical es una estructura que optimiza el espacio para cultivar en zonas donde no se
+ tiene mucho espacio, como lo son en hogares ubicadas en ciudades. Sirve para fomentar el autoconsumo, y son relativamente
+  sencillas de instalar, pudiendo utilizar material reciclado, como lo son botellas de platico.')),
 new(LblVertical,label(vertical,resource(vertical))),
-send_list(D,append,[LblVertical]),
+send_list(D,append,[LblInfo,LblVertical]),
 send(D,open_centered).
+
 horizontal:-new(D,dialog('Huertas Caseras Horizontales')),
 new(LblVertical,label(horizontal,resource(horizontal))),
 send_list(D,append,[LblVertical]),
@@ -97,5 +105,5 @@ new(BtnPlantar,button('Quieres plantar?',message(@prolog,plantar))),
 new(BtnPlantado,button('Ya tengo plantado!',message(@prolog,plantado))),
 new(BtnHuerto,button('Huerto Casero',message(@prolog,huerto))),
 
-send_list(D,append,[LblIcon,BtnPlantar,BtnPlantado,BtnHuerto]),
+send_list(D,append,[LblIcon,BtnPlantar,BtnHuerto,BtnPlantado]),
 send(D,open_centered).
